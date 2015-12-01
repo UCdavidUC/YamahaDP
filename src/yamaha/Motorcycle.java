@@ -1,11 +1,35 @@
 package yamaha;
 
+import java.util.Observable;
+
 /**
  *
  * @author Alejandra Martínez Cuevas A01334599
  * @author David Sánchez Almanza A01210766
  */
-public class Motorcycle {
+public class Motorcycle extends Observable {
+    
+    public enum State {
+        IN_PRODCUTION, WAITING;
+    }
+    
+    private State state = State.WAITING;
+    
+    public State getState() {
+        return state;
+    }
+    
+    public void buildMotorcycle() {
+        state = State.IN_PRODCUTION;
+        setChanged();
+        notifyObservers();
+    }
+    
+    public void waitForOrder() {
+        state = State.WAITING;
+        setChanged();
+        notifyObservers();
+    }
     
     private double gasCapacity;
     private double wheelSize;

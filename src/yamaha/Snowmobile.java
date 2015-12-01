@@ -1,11 +1,35 @@
 package yamaha;
 
+import java.util.Observable;
+
 /**
  *
  * @author Alejandra Martínez Cuevas A01334599
  * @author David Sánchez Almanza A01210766
  */
-public class Snowmobile {
+public class Snowmobile extends Observable {
+    
+    public enum State {
+        IN_PRODUCTION, WAITING;
+    }
+    
+    private State state = State.WAITING;
+    
+    public State getState() {
+        return state;
+    }
+    
+    public void buildSnowmobile() {
+        state = State.IN_PRODUCTION;
+        setChanged();
+        notifyObservers();
+    }
+    
+    public void waitForOrde() {
+        state = State.WAITING;
+        setChanged();
+        notifyObservers();
+    }
     
     private double gasCapacity;
     private String tractionType;
