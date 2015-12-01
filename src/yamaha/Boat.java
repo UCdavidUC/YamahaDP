@@ -113,8 +113,19 @@ public class Boat extends Observable {
             return this;
         }
         
+        public Boat build() {
+            return new Boat(this);
+        }
         
-        
+    }
+    
+    private Boat(Builder builder) {
+        gasCapacity = builder.gasCapacity;
+        boatLength = builder.boatLength;
+        price = builder.price;
+        quantity = builder.quantity;
+        model = builder.model;
+        year = builder.year;
     }
     
     
